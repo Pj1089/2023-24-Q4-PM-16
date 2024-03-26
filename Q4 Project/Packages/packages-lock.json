@@ -1,5 +1,6 @@
 {
   "dependencies": {
+<<<<<<< HEAD
     "com.unity.2d.animation": {
       "version": "8.0.4",
       "depth": 1,
@@ -87,6 +88,14 @@
       },
       "url": "https://packages.unity.com"
     },
+=======
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+>>>>>>> 840ca28770e74d36e8b7bef1b67cd8340afaec00
     "com.unity.collab-proxy": {
       "version": "1.17.2",
       "depth": 0,
