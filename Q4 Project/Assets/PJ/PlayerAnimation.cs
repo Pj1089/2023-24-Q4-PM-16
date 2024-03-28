@@ -3,34 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerAnimation : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 10f;
-
-    /*private GameInput Input = null;
-    private Rigidbody2D rb = null;
+    private CustomInput input = null;
     private Vector2 moveVector = Vector2.zero;
+    private Rigidbody2D rb = null;
+    private float moveSpeed = 10f;
     private Animator animator = null;
 
     private void Awake()
     {
-        Input = new GameInput();
+        input = new CustomInput();
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<animator>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
     {
-        Input.Enable();
-        Input.Player.Move.performed += MovePerformed;
-        Input.Player.Move.canceled += MoveCancelled;
+        input.Enable();
+        input.Player.Movement.performed += OnMovementPerformed;
+        input.Player.Movement.canceled += OnMovementCancelled;
     }
 
     private void OnDisable()
     {
-        Input.Disable();
-        Input.Player.Move.performed -= MovePerformed;
-        Input.Player.Move.cancelled -= MoveCancelled;
+        input.Disable();
+        input.Player.Movement.performed -= OnMovementPerformed;
+        input.Player.Movement.canceled -= OnMovementCancelled;
     }
 
     private void FixedUpdate()
@@ -38,10 +38,10 @@ public class PlayerAnimation : MonoBehaviour
         rb.velocity = moveVector * moveSpeed;
     }
 
-    private void MovePerformed(InputAction.CallbackContext callbackContext)
+    private void OnMovementPerformed(InputAction.CallbackContext value)
     {
-        moveVector = callbackContext.ReadValue<Vector2>();
-        if (moveVector.x > 0)
+        moveVector = value.ReadValue<Vector2>();
+        if(moveVector.x > 0)
         {
             transform.localScale = Vector3.one;
         }
@@ -51,9 +51,9 @@ public class PlayerAnimation : MonoBehaviour
         }
         animator.SetBool("isRunning", true);
     }
-    private void MoveCancelled(InputAction.CallbackContext callbackContext)
+    private void OnMovementCancelled(InputAction.CallbackContext value)
     {
-        moveVector = Vecto2.zero;
+        moveVector = Vector2.zero;
         animator.SetBool("isRunning", false);
-    }*/
+    }
 }
