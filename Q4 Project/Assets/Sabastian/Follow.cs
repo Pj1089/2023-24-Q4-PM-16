@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Follw : MonoBehaviour
+public class Follow : MonoBehaviour
 {
     public Transform target;
     public float speed;
