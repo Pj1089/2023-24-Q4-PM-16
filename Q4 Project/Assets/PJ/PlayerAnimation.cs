@@ -1,57 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class NewBehaviourScript : MonoBehaviour
+
+public class PlayerAnimation : MonoBehaviour
 {
-    float horizontalInput;
-    float moveSpeed = 5f;
-    bool isFacingRight = false;
-    float jumpPower = 5f;
-    bool isGrounded = false;
+    private CustomInput input = null;
+    private Vector2 moveVector = Vector2.zero;
+    private Rigidbody2D rb = null;
+    private float moveSpeed = 10f;
+    private Animator animator = null;
 
-    Rigidbody2D rb;
-    Animator animator;
-    void Start()
+    private void Awake()
     {
+        input = new CustomInput();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        input.Enable();
+        input.Player.Movement.performed += OnMovementPerformed;
+        input.Player.Movement.canceled += OnMovementCancelled;
+    }
 
-        FlipSprite();
-
-        if(Input.GetButtonDown("Jump") && isGrounded)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-            isGrounded = false;
-            animator.SetBool("isJumping", !isGrounded);
-        }
+    private void OnDisable()
+    {
+        input.Disable();
+        input.Player.Movement.performed -= OnMovementPerformed;
+        input.Player.Movement.canceled -= OnMovementCancelled;
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
-        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
-        animator.SetFloat("yVelocity", rb.velocity.y);
+        rb.velocity = moveVector * moveSpeed;
     }
 
-    void FlipSprite()
+    private void OnMovementPerformed(InputAction.CallbackContext value)
     {
-        if(isFacingRight && horizontalInput < 0f || !isFacingRight && horizontalInput > 0f)
+        moveVector = value.ReadValue<Vector2>();
+        if(moveVector.x > 0)
         {
-            isFacingRight = !isFacingRight;
-            Vector3 ls = transform.localScale;
-            ls.x *= -1f;
-            transform.localScale = ls;
+            transform.localScale = Vector3.one;
         }
+        else
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        animator.SetBool("isRunning", true);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnMovementCancelled(InputAction.CallbackContext value)
     {
-        isGrounded = true;
+        moveVector = Vector2.zero;
+        animator.SetBool("isRunning", false);
     }
 }
