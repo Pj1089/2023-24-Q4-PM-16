@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 1476654980}
   - component: {fileID: 1476654979}
   - component: {fileID: 1476654978}
+  - component: {fileID: 1476654983}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -460,13 +461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f413af2302bebbe4da938c3283023345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumps: 999
-  left: 97
-  right: 100
-  buildUp: 333
-  maxSpeed: 333
-  jump: 119
-  jumpForce: 5
 --- !u!212 &1476654981
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -534,6 +528,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1476654983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476654977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e101ece2afcb87040806dd13b7c29f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumps: 2
+  left: 0
+  right: 0
+  buildUp: 0
+  maxSpeed: 0
+  jump: 0
+  jumpForce: 77
 --- !u!1 &1518228054
 GameObject:
   m_ObjectHideFlags: 0

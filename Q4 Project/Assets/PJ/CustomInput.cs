@@ -52,7 +52,7 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""b2c57266-9b5b-450a-9da0-a2ff2d61ea5b"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
